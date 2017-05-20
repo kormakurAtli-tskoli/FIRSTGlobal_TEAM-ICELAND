@@ -37,6 +37,7 @@ public class ColorSensorTest extends LinearOpMode {
      * use a color sensor on your robot */
     View relativeLayout;
 
+
     /**
      * The runOpMode() method is the root of this LinearOpMode, as it is in all linear opModes.
      * Our implementation here, though is a bit unusual: we've decided to put all the actual work
@@ -71,6 +72,9 @@ public class ColorSensorTest extends LinearOpMode {
         // Get a reference to our sensor object.
         colorSensor = hardwareMap.get(NormalizedColorSensor.class, "color_sensor1");
 
+        leftMotor = hardwareMap.dcMotor.get("left_drive");
+        rightMotor = hardwareMap.dcMotor.get("right_drive");
+
         // If possible, turn the light on in the beginning (it might already be on anyway,
         // we just make sure it is if we can).
         if (colorSensor instanceof SwitchableLight) {
@@ -82,21 +86,6 @@ public class ColorSensorTest extends LinearOpMode {
 
         // Loop until we are asked to stop
         while (opModeIsActive()) {
-
-            // Check the status of the x button on the gamepad
-            bCurrState = gamepad1.x;
-
-            // If the button state is different than what it was, then act
-            if (bCurrState != bPrevState) {
-                // If the button is (now) down, then toggle the light
-                if (bCurrState) {
-                    if (colorSensor instanceof SwitchableLight) {
-                        SwitchableLight light = (SwitchableLight)colorSensor;
-                        light.enableLight(!light.isLightOn());
-                    }
-                }
-            }
-            bPrevState = bCurrState;
 
             // Read the sensor
             NormalizedRGBA colors = colorSensor.getNormalizedColors();
@@ -117,6 +106,9 @@ public class ColorSensorTest extends LinearOpMode {
                     .addData("g", "%.3f", colors.green)
                     .addData("b", "%.3f", colors.blue);
 
+
+
+
             /** We also display a conversion of the colors to an equivalent Android color integer.
              * @see Color */
             @ColorInt int color = colors.toColor();
@@ -125,6 +117,27 @@ public class ColorSensorTest extends LinearOpMode {
                     .addData("r", "%02x", Color.red(color))
                     .addData("g", "%02x", Color.green(color))
                     .addData("b", "%02x", Color.blue(color));
+
+            if (colors.red > 0.02 && colors.blue < 0.04 && colors.red > colors.blue * 2)
+            {
+                telemetry.addLine("ORANGE");
+                leftMotor.setPower(50);
+                rightMotor.setPower(50);
+
+            }
+            else if (colors.red < 0.04 && colors.blue > 0.02 && colors.red * 2 < colors.blue)
+            {
+                telemetry.addLine("BLUE");
+                leftMotor.setPower(50);
+                rightMotor.setPower(501);
+            }
+            else
+            {
+                leftMotor.setPower(0);
+                rightMotor.setPower(0);
+            }
+
+
 
             telemetry.update();
 
