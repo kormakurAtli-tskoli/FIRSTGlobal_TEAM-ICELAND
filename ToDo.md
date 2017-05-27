@@ -6,4 +6,4 @@ Verkefnin framundan
 	
 Allir gera dagbók þar sem fram kemur hvað var gert og hvenær, þetta er skilyrði
 
-Mæting alla miðvikudaga kl 8 og laugardaga kl 9
+Mæting alla miðvikudaga kl 20:00 og laugardaga kl 9:00
