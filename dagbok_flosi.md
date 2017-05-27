@@ -1,3 +1,3 @@
-Skrá inn færslur hér í hvert skipti sem unnið þ.e hvað var gert og hvenær: t.d
+Þetta skjal er dagbók Flosa Torfasonar í sambandi við hönnun og framkvæmdir á vélmenni fyrir First Global vélmennakepninni
 
-* 22.05.2017 vinna við hönnun á lyftu. o.s.fr.
+  27.05.2017 Aðallega fóru fram pælingar í lyftubúnað vélmennisins en einnig byrjunnar framkvæmdir. Það allra fyrst kláraði ég boltasafnaran en það tók örfáar sekúntur, ég skypti um gír á dekkja slánni og snéri mótornum 90 gráður. Pælingar á lyfrubúnaðinum tóku mesta tíman þar sem matgt var skoðað. Niðurstaðan var sú að ýta á boltunum með plastslöngunni upp á milli þess og nokkura ál stanga. Slangan verður snúið með mótor festan á hlið vélmennisins sem keyrir stöng með pulley sem slangan tengist við.
