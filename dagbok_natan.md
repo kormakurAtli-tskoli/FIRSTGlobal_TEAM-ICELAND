@@ -15,7 +15,7 @@ Eftir mikla hugmyndavinnslu og prufun höfum við komið upp með góða leið t
 ### 27.5.17
 Við gerðum heljarinnar plan um framtíð verkefnisins og höfum lokið við mikið af grunhönnuninni. Við munum reyna að færa bolta upp með færibandi í formi þykku plastslöngunnar sem við fengum. Drive train er alveg tilbúð fyrir utan það að það vantar omni-wheel dekk fremst vegna þess að þau eru ekki enn komin í pósti.
 
-Eftir að boltarnir eru komnir upp munum við flokka þá og setja í geymslur aftast í vélmenninu til þess að geta hent öllum í einu í holurnar. Búnaðurinn til þess að sortera boltana er ekki tilbúinn, en hugbúnaðurinn er löngu kominn, enda er þetta einföld forritun.
+Eftir að boltarnir eru komnir upp munum við flokka þá og setja í geymslur aftast í vélmenninu til þess að geta hent öllum í einu í holurnar. Búnaðurinn til þess að sortera boltana er ekki tilbúinn, en hugbúnaðurinn er löngu kominn, enda er þetta einföld forritun. Ég set inn einhverjar fleiri myndir næst.
 
 Það er líka að myndast gott plan með krókana til þess að lyfta upp vélmenninu en ég er ekki að sjá um það svo ég mun ekki fara meira í það.
 
