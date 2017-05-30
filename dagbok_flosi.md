@@ -4,4 +4,4 @@
 
   28.05.2017 Vann aðallega í boltalyftunni. Byrjaði á grunninum þ.e. að fá grip á boltunum og hólf til þess að halda þeim í snertingu við slöngunna sem ýtir þeim upp. Bjó til einskonar tregt sem vísar boltunum að lyftunum. Lyfan virkar álíka og bolta safnarinn, stöng þvert yfir keyrð af mótor. Í stað fjölda hjóla eru tvö pullies sem snúa gúmmíslöngum sem ýta boltunum upp.
   
-  
+  29.05.2017 Lagaði til eftir mig of setti það sem var tilbúið saman, vegna þess við höfðum ekki tíma í það þökk sé þjófavarnakerfinu.
