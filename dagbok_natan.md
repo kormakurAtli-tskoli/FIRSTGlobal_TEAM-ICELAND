@@ -22,3 +22,19 @@ Eftir að boltarnir eru komnir upp munum við flokka þá og setja í geymslur a
 Við ætlum að fara í skemmtigarðinn í næstu viku til þess að taka upp fyrir myndbandið okkar. Það verður líka vonandi mjög skemmtilegt.
 
 Ég ætla samt *alls ekki* að fara í paintball >:(
+
+
+### 3.6.17
+Það var seinkun á ferðinni í skemmtigarðinn. Hún verður næsta laugardag vegna þess að myndatökumaðurinn komst ekki í dag.
+
+Við unnum mikið að því að finna út hvernig best væri að hanna boltalyftuna og lyftibúnaðinn. Tveir partar með svipuð nöfn sem framkvæma samt allt aðra hluti. Boltalyftan mun núna lyfta boltunum á aðra hæð í vélmenninu þar sem þeim verður safnað í tvö hólf og þeir verða svo losaðir út að framan. Lyftibúnaðurinn mun síðan lyfta sjálfu vélmenninu í lok leiksins. Það er flókin þraut sem við erum ekki allt of mikið búin að vera að pæla í.
+
+Vandamálið með lyftuna er sú að stöngin sem við þurfum að lyfta okkur með er 75 sentimetra uppi í loftinu en vélmennið má einungis vera 50 cm á hæð. Þetta þýðir að við þurfum að lyfta upp einhverkonar krók upp yfir þessa 75 cm og svo draga hann niður aftur með nægilegu afli til þess að lyfta vélmenninu öllu, sem ég býst við að muni vega minnst 5 kg.
+
+Hugmyndin sem ég kom með til þess að framkvæma þessa flóknu þraut er byggð á hefðbundnum fólkslyftum. Það er einhver aðalþygd sem við viljum lyfta, sem er krókurinn, og svo ertu með einhverja mótþyngd sem mundi þá lyfta upp króknum fyrir okkur. Þannig þarf vélmennið ekki sjálft að ýta upp króknum og getur einbeitt sér að því að draga sjálft sig upp. Lokahugmyndin sem Flosi kom aðallega upp með er sú að nota teygjuband sem við eru með til þess að þrýsta krókinum upp. Síðan drögum við hann aftur niður (og lyftum öllu vélmenninu upp) með því að róa inn band með core mótor.
+
+Við munum hefja vinnu við fyrsta tækifæri sem allir eru hérna til að samþykkja og fara yfir hugmyndina.
+
+Boltalyftan er núna komin aftast í vélmennið, þar sem hún mun vonandi enda. Þá höfum við nóg af plássi til þess að koma öllum boltunum í miðjuna þar sem við viljum hafa þá.
+
+Omni-wheel hjólin og keðjubroturinn eru líka loksins komin í póst eftir langa bið.
