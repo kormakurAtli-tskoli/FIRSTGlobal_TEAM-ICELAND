@@ -90,7 +90,7 @@ public class SecondOpMode extends LinearOpMode {
 
                 if (gamepad1.b == true)
                 {
-                    ballCollectorMotor.setPower(-0.4);
+                    ballCollectorMotor.setPower(-0.8);
                     telemetry.addLine("B button on");
                 }
                 else {
