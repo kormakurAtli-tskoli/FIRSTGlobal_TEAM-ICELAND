@@ -57,7 +57,7 @@ import org.firstinspires.ftc.robotcore.internal.AppUtil;
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
-@TeleOp(name = "Sensor: Color", group = "Practice-Bot")
+//@TeleOp(name = "Sensor: Color", group = "Practice-Bot")
 @Disabled
 public class SensorColor1 extends LinearOpMode {
 

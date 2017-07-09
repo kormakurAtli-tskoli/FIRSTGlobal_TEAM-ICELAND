@@ -23,7 +23,7 @@ import org.firstinspires.ftc.robotcore.internal.AppUtil;
  * Created by 1803982879 on 17.5.2017.
  */
 
-@TeleOp(name="Color Sensor test OP", group="Practice-Bot")
+//@TeleOp(name="Color Sensor test OP", group="Practice-Bot")
 
 public class ColorSensorTest extends LinearOpMode {
     private DcMotor leftMotor;

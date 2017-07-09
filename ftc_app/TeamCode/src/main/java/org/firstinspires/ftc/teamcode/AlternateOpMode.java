@@ -2,16 +2,9 @@ package org.firstinspires.ftc.teamcode;
 
 import android.graphics.Color;
 import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.view.KeyEvent;
 
-import com.qualcomm.ftccommon.UpdateUI;
-import com.qualcomm.robotcore.eventloop.EventLoop;
-import com.qualcomm.robotcore.eventloop.EventLoopManager;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.exception.RobotCoreException;
-import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -19,26 +12,17 @@ import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 import com.qualcomm.robotcore.hardware.Servo;
 
-
-import org.firstinspires.ftc.robotcore.internal.GamepadUser;
-
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 /**
- * Created by 1803982879 on 1.7.2017.
+ * Created by 1803982879 on 8.7.2017.
  */
 
+@TeleOp(name="Alternate Operation Mode", group="Ice-bot 3.0")
 
-@TeleOp(name="Prime Operation Mode", group="Ice-bot 3.0")
 
-
-public class PrimeOpMode extends LinearOpMode {
-
+public class AlternateOpMode extends LinearOpMode {
     // Initialization
     private DcMotor leftDriveMotor1;
     private DcMotor rightDriveMotor1;
@@ -61,8 +45,6 @@ public class PrimeOpMode extends LinearOpMode {
 
 
     static final int    CYCLE_MS    =   20;     // period of each cycle
-
-    Queue<String> eventQueue = new LinkedList<String>();
 
 
 
@@ -99,20 +81,22 @@ public class PrimeOpMode extends LinearOpMode {
         blueDoorServo = hardwareMap.servo.get("blueDoorServo");
         sorterServo.scaleRange(0.0, 1.0);
 
-        colorSensor = hardwareMap.get(NormalizedColorSensor.class, "colorSensor");
+        //colorSensor = hardwareMap.get(NormalizedColorSensor.class, "colorSensor");
 
         double sorterPosition = 0.5;
         double orangeDoorPosition = 0;
         double blueDoorPosition = 0;
 
-        int blueCount = 0;
-        int orangeCount = 0;
-        boolean ball = false;
-
         blueDoorServo.setPosition(orangeDoorPosition);
         orangeDoorServo.setPosition(blueDoorPosition);
 
         sorterServo.setPosition(sorterPosition);
+
+        lastGamepad1 = new boolean[] {gamepad1.a, gamepad1.b, gamepad1.x, gamepad1.y};
+        lastGamepad2 = new boolean[] {gamepad2.a, gamepad2.b, gamepad2.x, gamepad2.y};
+
+
+
 
         ballCollectorMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         elevatorMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -121,15 +105,14 @@ public class PrimeOpMode extends LinearOpMode {
         telemetry.update();
         waitForStart();
 
-        ballCollectorMotor.setPower(0.7);
-        elevatorMotor.setPower(0.83);
-
         try {
             while (opModeIsActive()) {
                 telemetry.clearAll();
 
+                //Drive train
+
                 List<DcMotor> leftMotors = new ArrayList<>();
-                
+
                 leftMotors.add(leftDriveMotor1);
                 leftMotors.add(leftDriveMotor2);
 
@@ -139,15 +122,15 @@ public class PrimeOpMode extends LinearOpMode {
                 rightMotors.add(rightDriveMotor2);
 
 
-                RobotFunctions.driveByGamepad(gamepad1, leftMotors, rightMotors);
+                RobotFunctions.driveByGamepad(gamepad1, leftMotors, rightMotors, true);
 
                 //Hooks
 
 
-                if (gamepad1.left_trigger > 0.1) {
+                if (gamepad2.left_trigger > 0.1) {
                     leftHookMotor.setPower(-gamepad1.left_trigger);
                     rightHookMotor.setPower(-gamepad1.left_trigger);
-                } else if (gamepad1.right_trigger > 0.1) {
+                } else if (gamepad2.right_trigger > 0.1) {
                     leftHookMotor.setPower(0.2);
                     rightHookMotor.setPower(0.2);
                 } else {
@@ -174,57 +157,33 @@ public class PrimeOpMode extends LinearOpMode {
                     elevatorMotor.setPower(0.83);
                 }
 
+
+
                 //Color Sensor and sorter
+                Gamepad.GamepadCallback g;
+
                 if (gamepad1.x == true) {
                     sorterPosition = 0.35;
                 } else if (gamepad1.y == true) {
-                    sorterPosition = 0.60;
+                    sorterPosition = 0.65;
                 }
                 else if (gamepad1.b == true)
                 {
                     sorterPosition = 0.5;
                 }
 
-                int ballColor = RobotFunctions.senseBallColor(colorSensor);
-
-                if (ballColor == 2)
-                {
-                    telemetry.addLine("Ball color: ORANGE");
-                    if (ball == false){
-                        orangeCount++;
-                    }
-                    sorterPosition = 0.60;
-                    ball = true;
-                }
-                else if (ballColor == 1)
-                {
-                    telemetry.addLine("Ball color: BLUE");
-                    if (ball == false){
-                        blueCount++;
-                    }
-                    sorterPosition = 0.35;
-                    ball = true;
-                }
-                else{
-                    telemetry.addLine("Ball color: No color detected");
-                    ball = false;
-                }
-
 
                 sorterServo.setPosition(sorterPosition);
-
 
                 //Ball doors
                 if (gamepad2.dpad_left){
                     blueDoorPosition = 0.5;
-                    blueCount = 0;
                 }
                 else{
                     blueDoorPosition = 0;
                 }
                 if (gamepad2.dpad_right){
                     orangeDoorPosition = 0.5;
-                    orangeCount = 0;
                 }
                 else{
                     orangeDoorPosition = 0;
@@ -236,19 +195,19 @@ public class PrimeOpMode extends LinearOpMode {
 
 
 
+
                 telemetry.addData("Sorter: ", sorterServo.getPosition());
                 telemetry.addLine(RobotFunctions.getMotorTelemetryString(allMotors, hardwareMap));
-                telemetry.addData("Blue ball count:", blueCount);
-                telemetry.addData("Orange ball count:", orangeCount);
+
                 telemetry.update();
 
                 sleep(CYCLE_MS);
+                //idle();
             }
         }
         catch (Exception ex) {
             telemetry.addData("Exception: ", ex);
             telemetry.update();
-            return;
         }
         finally {
             leftDriveMotor1.setPower(0);
@@ -259,7 +218,7 @@ public class PrimeOpMode extends LinearOpMode {
             ballCollectorMotor.setPower(0);
             leftHookMotor.setPower(0);
             rightHookMotor.setPower(0);
-            sorterServo.setPosition(0.5);
+            sorterServo.setPosition(0);
         }
     }
     //Exit

@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Created by 1803982879 on 20.5.2017.
  */
 
-@TeleOp(name="My Second Op Mode", group="Practice-Bot")
+//@TeleOp(name="My Second Op Mode", group="Practice-Bot")
 
 
 public class SecondOpMode extends LinearOpMode {

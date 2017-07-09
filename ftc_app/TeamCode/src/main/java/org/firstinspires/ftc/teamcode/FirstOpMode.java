@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Created by 1803982879 on 5/13/2017.
  */
 
-@TeleOp(name="My First Op Mode", group="Practice-Bot")
+//@TeleOp(name="My First Op Mode", group="Practice-Bot")
 
 public class FirstOpMode extends LinearOpMode {
     private DcMotor leftMotor;
