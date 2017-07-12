@@ -69,6 +69,10 @@ public class RobotFunctions {
             right = left;
         }
 
+        if (g.left_bumper == true){
+            right = -left;
+        }
+
         for (DcMotor motor: leftMotors) {
             motor.setPower(left);
         }

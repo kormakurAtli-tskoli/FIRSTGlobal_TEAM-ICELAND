@@ -128,8 +128,8 @@ public class AlternateOpMode extends LinearOpMode {
 
 
                 if (gamepad2.left_trigger > 0.1) {
-                    leftHookMotor.setPower(-gamepad1.left_trigger);
-                    rightHookMotor.setPower(-gamepad1.left_trigger);
+                    leftHookMotor.setPower(-gamepad2.left_trigger);
+                    rightHookMotor.setPower(-gamepad2.left_trigger);
                 } else if (gamepad2.right_trigger > 0.1) {
                     leftHookMotor.setPower(0.2);
                     rightHookMotor.setPower(0.2);
@@ -150,11 +150,23 @@ public class AlternateOpMode extends LinearOpMode {
                     elevatorMotor.setPower(0);
                 }
                 if (gamepad2.a) {
-                    ballCollectorMotor.setPower(0.7);
+                    if (gamepad2.dpad_down && ballCollectorMotor.getPower() != 0.7)
+                    {
+                        ballCollectorMotor.setPower(-0.7);
+                    }
+                    else{
+                        ballCollectorMotor.setPower(0.7);
+                    }
                 }
                 if (gamepad2.x)
                 {
-                    elevatorMotor.setPower(0.83);
+                    if (gamepad2.dpad_down && elevatorMotor.getPower() != 0.83)
+                    {
+                        elevatorMotor.setPower(-0.83);
+                    }
+                    else{
+                        elevatorMotor.setPower(0.83);
+                    }
                 }
 
 
