@@ -87,6 +87,15 @@ public class DriveOnlyOpMode extends LinearOpMode {
         ballCollectorMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         elevatorMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        List<DcMotor> leftMotors = new ArrayList<>();
+
+        leftMotors.add(leftDriveMotor1);
+        leftMotors.add(leftDriveMotor2);
+
+        List<DcMotor> rightMotors = new ArrayList<>();
+
+        rightMotors.add(rightDriveMotor1);
+        rightMotors.add(rightDriveMotor2);
 
         telemetry.addData(">", "Start to begin." );
         telemetry.update();
@@ -95,16 +104,7 @@ public class DriveOnlyOpMode extends LinearOpMode {
             while (opModeIsActive()) {
                 telemetry.clearAll();
 
-                List<DcMotor> leftMotors = new ArrayList<>();
-
-                leftMotors.add(leftDriveMotor1);
-                leftMotors.add(leftDriveMotor2);
-
-                List<DcMotor> rightMotors = new ArrayList<>();
-
-                rightMotors.add(rightDriveMotor1);
-                rightMotors.add(rightDriveMotor2);
-
+                //Drive train
 
                 RobotFunctions.driveByGamepad(gamepad1, leftMotors, rightMotors);
 

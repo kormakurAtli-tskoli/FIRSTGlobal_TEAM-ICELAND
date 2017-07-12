@@ -92,6 +92,16 @@ public class PrimeOpMode extends LinearOpMode {
         allMotors.add(leftHookMotor);
         allMotors.add(rightHookMotor);
 
+        List<DcMotor> leftMotors = new ArrayList<>();
+
+        leftMotors.add(leftDriveMotor1);
+        leftMotors.add(leftDriveMotor2);
+
+        List<DcMotor> rightMotors = new ArrayList<>();
+
+        rightMotors.add(rightDriveMotor1);
+        rightMotors.add(rightDriveMotor2);
+
 
         sorterServo = hardwareMap.servo.get("sorterServo");
         orangeDoorServo = hardwareMap.servo.get("orangeDoorServo");
@@ -128,26 +138,17 @@ public class PrimeOpMode extends LinearOpMode {
             while (opModeIsActive()) {
                 telemetry.clearAll();
 
-                List<DcMotor> leftMotors = new ArrayList<>();
-                
-                leftMotors.add(leftDriveMotor1);
-                leftMotors.add(leftDriveMotor2);
-
-                List<DcMotor> rightMotors = new ArrayList<>();
-
-                rightMotors.add(rightDriveMotor1);
-                rightMotors.add(rightDriveMotor2);
-
+                //Drive train
 
                 RobotFunctions.driveByGamepad(gamepad1, leftMotors, rightMotors);
 
                 //Hooks
 
 
-                if (gamepad1.left_trigger > 0.1) {
-                    leftHookMotor.setPower(-gamepad1.left_trigger);
-                    rightHookMotor.setPower(-gamepad1.left_trigger);
-                } else if (gamepad1.right_trigger > 0.1) {
+                if (gamepad2.left_trigger > 0.1) {
+                    leftHookMotor.setPower(-gamepad2.left_trigger);
+                    rightHookMotor.setPower(-gamepad2.left_trigger);
+                } else if (gamepad2.right_trigger > 0.1) {
                     leftHookMotor.setPower(0.2);
                     rightHookMotor.setPower(0.2);
                 } else {
@@ -156,9 +157,7 @@ public class PrimeOpMode extends LinearOpMode {
                 }
 
 
-                //Inner workings
-
-
+                //Inner motor controls, ballCollectorMotor and elevatorMotor
                 if (gamepad2.b) {
                     ballCollectorMotor.setPower(0);
                 }
@@ -263,6 +262,8 @@ public class PrimeOpMode extends LinearOpMode {
             return;
         }
         finally {
+
+            //Turn off all motors when program is terminated or in case of an error.
             leftDriveMotor1.setPower(0);
             leftDriveMotor2.setPower(0);
             rightDriveMotor1.setPower(0);

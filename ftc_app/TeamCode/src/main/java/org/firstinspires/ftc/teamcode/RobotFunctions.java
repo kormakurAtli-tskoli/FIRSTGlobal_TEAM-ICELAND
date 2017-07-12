@@ -16,6 +16,9 @@ import java.util.List;
  */
 
 public class RobotFunctions {
+
+    //Returns if balls are blue, orange or neither
+
     static int senseBallColor(NormalizedColorSensor colorSensor) throws InterruptedException {
         NormalizedRGBA colors = colorSensor.getNormalizedColors();
 
@@ -40,6 +43,10 @@ public class RobotFunctions {
         }
         return 0;
     }
+
+
+    //Control given motors with the given gamepad's control sticks. Optimized for navigation.
+
     static void driveByGamepad(Gamepad g, List<DcMotor> leftMotors, List<DcMotor> rightMotors){
         driveByGamepad(g, leftMotors, rightMotors, false);
     }
@@ -80,18 +87,15 @@ public class RobotFunctions {
             motor.setPower(-right);
         }
     }
-    static boolean buttonPressed(boolean button, boolean lastState){
-        if (button == false && lastState == true){
-            return true;
-        }
-        return false;
-    }
+
+    //Returns a single string detailing all given motors. Each motor's description is broken up with a newline.
+
     static String getMotorTelemetryString(List<DcMotor> motors, HardwareMap hardwareMap){
         String s = "Motors: ";
 
         for (DcMotor m: motors
              ) {
-            s += hardwareMap.getNamesOf(m) + " Power: " + m.getPower() + " - port " + m.getPortNumber() + ", \n";
+            s += hardwareMap.getNamesOf(m) + " Power: " + Math.round(10 * m.getPower()) / 10 + " - port " + m.getPortNumber() + ", \n";
             
         }
         return s;

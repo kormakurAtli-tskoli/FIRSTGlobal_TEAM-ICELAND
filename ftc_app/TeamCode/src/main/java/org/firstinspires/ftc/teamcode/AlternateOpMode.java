@@ -75,28 +75,37 @@ public class AlternateOpMode extends LinearOpMode {
         allMotors.add(rightHookMotor);
 
 
+        List<DcMotor> leftMotors = new ArrayList<>();
+
+        leftMotors.add(leftDriveMotor1);
+        leftMotors.add(leftDriveMotor2);
+
+        List<DcMotor> rightMotors = new ArrayList<>();
+
+        rightMotors.add(rightDriveMotor1);
+        rightMotors.add(rightDriveMotor2);
+
+
         sorterServo = hardwareMap.servo.get("sorterServo");
         orangeDoorServo = hardwareMap.servo.get("orangeDoorServo");
         orangeDoorServo.setDirection(Servo.Direction.REVERSE);
         blueDoorServo = hardwareMap.servo.get("blueDoorServo");
         sorterServo.scaleRange(0.0, 1.0);
 
-        //colorSensor = hardwareMap.get(NormalizedColorSensor.class, "colorSensor");
+        colorSensor = hardwareMap.get(NormalizedColorSensor.class, "colorSensor");
 
         double sorterPosition = 0.5;
         double orangeDoorPosition = 0;
         double blueDoorPosition = 0;
 
+        int blueCount = 0;
+        int orangeCount = 0;
+        boolean ball = false;
+
         blueDoorServo.setPosition(orangeDoorPosition);
         orangeDoorServo.setPosition(blueDoorPosition);
 
         sorterServo.setPosition(sorterPosition);
-
-        lastGamepad1 = new boolean[] {gamepad1.a, gamepad1.b, gamepad1.x, gamepad1.y};
-        lastGamepad2 = new boolean[] {gamepad2.a, gamepad2.b, gamepad2.x, gamepad2.y};
-
-
-
 
         ballCollectorMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         elevatorMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -111,21 +120,10 @@ public class AlternateOpMode extends LinearOpMode {
 
                 //Drive train
 
-                List<DcMotor> leftMotors = new ArrayList<>();
-
-                leftMotors.add(leftDriveMotor1);
-                leftMotors.add(leftDriveMotor2);
-
-                List<DcMotor> rightMotors = new ArrayList<>();
-
-                rightMotors.add(rightDriveMotor1);
-                rightMotors.add(rightDriveMotor2);
-
-
                 RobotFunctions.driveByGamepad(gamepad1, leftMotors, rightMotors, true);
 
-                //Hooks
 
+                //Hooks
 
                 if (gamepad2.left_trigger > 0.1) {
                     leftHookMotor.setPower(-gamepad2.left_trigger);
@@ -139,8 +137,7 @@ public class AlternateOpMode extends LinearOpMode {
                 }
 
 
-                //Inner workings
-
+                //Inner motor controls, ballCollectorMotor and elevatorMotor
 
                 if (gamepad2.b) {
                     ballCollectorMotor.setPower(0);
@@ -170,18 +167,40 @@ public class AlternateOpMode extends LinearOpMode {
                 }
 
 
-
                 //Color Sensor and sorter
-                Gamepad.GamepadCallback g;
-
                 if (gamepad1.x == true) {
                     sorterPosition = 0.35;
                 } else if (gamepad1.y == true) {
-                    sorterPosition = 0.65;
+                    sorterPosition = 0.60;
                 }
                 else if (gamepad1.b == true)
                 {
                     sorterPosition = 0.5;
+                }
+
+                int ballColor = RobotFunctions.senseBallColor(colorSensor);
+
+                if (ballColor == 2)
+                {
+                    telemetry.addLine("Ball color: ORANGE");
+                    if (ball == false){
+                        orangeCount++;
+                    }
+                    sorterPosition = 0.60;
+                    ball = true;
+                }
+                else if (ballColor == 1)
+                {
+                    telemetry.addLine("Ball color: BLUE");
+                    if (ball == false){
+                        blueCount++;
+                    }
+                    sorterPosition = 0.35;
+                    ball = true;
+                }
+                else{
+                    telemetry.addLine("Ball color: No color detected");
+                    ball = false;
                 }
 
 
@@ -210,7 +229,8 @@ public class AlternateOpMode extends LinearOpMode {
 
                 telemetry.addData("Sorter: ", sorterServo.getPosition());
                 telemetry.addLine(RobotFunctions.getMotorTelemetryString(allMotors, hardwareMap));
-
+                telemetry.addData("Blue ball count:", blueCount);
+                telemetry.addData("Orange ball count:", orangeCount);
                 telemetry.update();
 
                 sleep(CYCLE_MS);
@@ -222,6 +242,8 @@ public class AlternateOpMode extends LinearOpMode {
             telemetry.update();
         }
         finally {
+            //Turn off all motors when program is terminated or in case of an error.
+
             leftDriveMotor1.setPower(0);
             leftDriveMotor2.setPower(0);
             rightDriveMotor1.setPower(0);
